@@ -1,0 +1,12 @@
+one teacher, multiple courses.
+one course, one teacher. one to many
+
+teacher: {
+    id
+    firstname
+    lastname
+    phone
+    class
+    password
+    email
+}
