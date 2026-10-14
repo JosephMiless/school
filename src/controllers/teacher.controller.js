@@ -57,4 +57,4 @@ export const updateTeacherDetailsController = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
