@@ -1,25 +1,16 @@
-import { config } from "../lib/env.js";
+import { config } from "../lib/config.js";
 
 export default {
   development: {
-    username: config.db.user,
-    password: config.db.pass,
-    database: config.db.name,
-    host: config.db.host,
+    url: config.db_uri,
     dialect: "postgres",
   },
   test: {
-    username: "root",
-    password: null,
-    database: "database_test",
-    host: "127.0.0.1",
-    dialect: "mysql",
+    url: config.db_uri,
+    dialect: "postgres",
   },
   production: {
-    username: "root",
-    password: null,
-    database: "database_production",
-    host: "127.0.0.1",
-    dialect: "mysql",
+    url: config.db_uri,
+    dialect: "postgres",
   },
 };
