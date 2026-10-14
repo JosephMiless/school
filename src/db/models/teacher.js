@@ -29,13 +29,12 @@ Teacher.init(
       allowNull: false,
       unique: true,
     },
-    t_class: {
-      type: DataTypes.STRING,
+    employment_date: {
+      type: DataTypes.DATE,
       allowNull: false,
-      unique: true,
     },
-    password: {
-      type: DataTypes.STRING,
+    employment_status: {
+      type: DataTypes.ENUM("ACTIVE", "LEAVE", "SUSPENDED", "RETIRED", "FIRED"),
       allowNull: false,
     },
     createdAt: {

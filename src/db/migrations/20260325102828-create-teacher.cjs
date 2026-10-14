@@ -27,13 +27,12 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      class: {
-        type: Sequelize.STRING,
+      employment_date: {
+        type: Sequelize.DATE,
         allowNull: false,
-        unique: true,
       },
-      password: {
-        type: Sequelize.STRING,
+      employment_status: {
+        type: Sequelize.ENUM('ACTIVE', 'LEAVE', 'SUSPENDED', 'RETIRED', 'FIRED'),
         allowNull: false,
       },
       createdAt: {

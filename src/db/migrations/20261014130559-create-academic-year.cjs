@@ -2,25 +2,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Courses', {
+    await queryInterface.createTable('Academic_Years', {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4
       },
-      name: {
+      year_name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      teacher: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        references: {
-          model: "Teachers",
-          key: "id"
-        },
-        onDelete: "SET NULL",
-        onUpdate: "CASCADE"
+      start_date: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      end_date: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      status: {
+        type: Sequelize.ENUM('ONGOING', 'COMPLETED'),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -33,6 +36,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Courses');
+    await queryInterface.dropTable('Academic_Years');
   }
 };

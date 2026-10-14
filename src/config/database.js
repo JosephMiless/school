@@ -1,16 +1,16 @@
-import { config } from "../lib/config.js";
+import { env } from "../lib/env.js";
 
 export default {
   development: {
-    url: config.db_uri,
+    url: env.db_uri,
     dialect: "postgres",
   },
   test: {
-    url: config.db_uri,
+    url: env.db_uri,
     dialect: "postgres",
   },
   production: {
-    url: config.db_uri,
+    url: env.db_uri,
     dialect: "postgres",
   },
 };
