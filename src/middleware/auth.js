@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { config } from "../lib/env.js";
+import { env } from "../lib/env.js";
 
 export const auth = async (req, res, next) => {
   try {
@@ -14,7 +14,7 @@ export const auth = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({ error: "Unauthorized, no token provided" });
     }
-    jwt.verify(token, config.access, (error, user) => {
+    jwt.verify(token, env.access, (error, user) => {
       if (error) {
         return res.status(403).json({ error: "This session has expired. Kindly re-login" });
       }

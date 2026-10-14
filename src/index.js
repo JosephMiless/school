@@ -1,5 +1,5 @@
 import express from "express";
-import { config } from "./lib/env.js";
+import { env } from "./lib/env.js";
 import { iniDb } from "./db/models/index.js";
 import { teacherRouter } from "./routes/teacher.routes.js";
 import { errorMiddleware } from "./middleware/error.middleware.js";
@@ -11,7 +11,7 @@ app.use(express.json());
 app.use("/teachers", teacherRouter);
 app.use(errorMiddleware);
 
-app.listen(config.port, async () => {
+app.listen(env.port, async () => {
   await iniDb();
   console.log(`server running`);
 });

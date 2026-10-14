@@ -1,4 +1,4 @@
 import { Sequelize } from "sequelize";
-import { config } from "./env.js";
+import { env } from "./env.js";
 
-export const sequelize = new Sequelize(config.db_uri);
+export const sequelize = new Sequelize(env.db_uri);
