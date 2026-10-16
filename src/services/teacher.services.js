@@ -5,16 +5,36 @@ import {
   updateTeacherDetails,
 } from "../repository/teacher.repository.js";
 import { BadRequestError, NotFoundError } from "../utils/app.errors.js";
-import {hashPassword, comparePassword} from "../utils/encrypt.js"
+import {hashPassword, comparePassword} from "../utils/encrypt.js";
+import {findUserAccountByEmail, saveUserAccount} from "../repository/user.accounts.repository.js";
 
 export const signUpTeacherService = async (data) => {
-  const teacherExists = await findTeacherByEmail(data.email);
+  const teacherExists = await findUserAccountByEmail(data.email);
 
   if (teacherExists) throw new BadRequestError(`Account already exists`);
 
   data.password = await hashPassword(data.password);
 
-  const teacher = await saveTeacherDetails(data);
+  const userAccountData = {
+    email: data.email,
+    password_hash: data.password,
+    role: 'TEACHER',
+    account_status: 'ACTIVE'
+  };
+
+  const userAccount = await saveUserAccount(userAccountData);
+
+  const teacherData = {
+    firstName: data.firstName,
+    lastName: data.lastName,
+    email: data.email,
+    phone: data.phone,
+    employment_date: data.employment_date,
+    employment_status: 'ACTIVE',
+    account_id: userAccount.id
+  };
+
+  const teacher = await saveTeacherDetails(teacherData);
 
   return teacher;
 };

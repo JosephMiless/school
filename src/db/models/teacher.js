@@ -45,6 +45,15 @@ Teacher.init(
       allowNull: false,
       type: DataTypes.DATE,
     },
+    account_id:{
+      type: DataTypes.UUID,
+      allowNull: false,
+      unique: true,
+      references: {
+        model: 'User_Accounts',
+        key: 'id'
+      }
+    },
   },
   {
     sequelize,

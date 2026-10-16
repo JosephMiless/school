@@ -5,8 +5,8 @@ export const signUpTeacherSchema = joi.object({
   lastName: joi.string().required(),
   email: joi.string().email().required(),
   phone: joi.string().required(),
-  t_class: joi.string().required(),
   password: joi.string().required(),
+  employment_date: joi.string().required(),
 });
 
 export const loginTeacherSchema = joi.object({
