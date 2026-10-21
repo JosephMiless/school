@@ -1,4 +1,4 @@
-import { aToken } from "../lib/jwt.js";
+import { aToken, rToken } from "../lib/jwt.js";
 import { loginTeacherService, signUpTeacherService, updateTeacherDetailsService } from "../services/teacher.services.js";
 import { BadRequestError, UnauthorizedError } from "../utils/app.errors.js";
 import {
@@ -31,9 +31,10 @@ export const loginTeacherController = async (req, res, next) => {
 
     const teacher = await loginTeacherService(value);
 
-    const token = aToken({id: teacher.id, email: teacher.email, t_class: teacher.t_class});
+    const acessToken = aToken({id: teacher.id, email: teacher.email, role: teacher.role});
+    const refreshToken = rToken({id: teacher.id, email: teacher.email, role: teacher.role});
 
-    return res.status(200).json({ message: "Login successful", token });
+    return res.status(200).json({ message: "Login successful", acessToken, refreshToken });
   } catch (error) {
     next(error);
   }
