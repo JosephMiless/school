@@ -31,23 +31,23 @@ export const auth = async (req, res, next) => {
   }
 };
 
-// export const adminAuth = (req, res, next) => {
-// try {
+export const teacherAuth = (req, res, next) => {
+try {
 
-//     const user = req.user;
+    const user = req.user;
     
-//     if (user.role !== "admin")
-//       return res
-//         .status(403)
-//         .json({ error: "You do not have access to this endpoint" });
+    if (user.role !== "TEACHER")
+      return res
+        .status(403)
+        .json({ error: "You do not have access to this endpoint" });
 
-//     next();
+    next();
   
-// } catch (error) {
+} catch (error) {
 
-//   console.log(`Internal server error: admin auth`, error);
+  console.log(`Internal server error: admin auth`, error);
   
-//   return res.status(500).json({error: `Internal server error!`});
+  return res.status(500).json({error: `Internal server error!`});
   
-// }
-// }
+}
+}

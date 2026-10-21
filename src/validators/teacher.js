@@ -14,8 +14,9 @@ export const loginTeacherSchema = joi.object({
   password: joi.string().required(),
 });
 
-export const udateTeacherDetailsSchema = joi.object({
-  firstName: joi.string(),
-  lastName: joi.string(),
-  t_class: joi.string(),
-}).min(1);
+export const udateTeacherDetailsSchema = joi
+  .object({
+    firstName: joi.string(),
+    lastName: joi.string(),
+  })
+  .min(1);

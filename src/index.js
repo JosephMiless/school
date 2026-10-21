@@ -3,12 +3,14 @@ import { env } from "./lib/env.js";
 import { iniDb } from "./db/models/index.js";
 import { teacherRouter } from "./routes/teacher.routes.js";
 import { errorMiddleware } from "./middleware/error.middleware.js";
+import { classRouter } from "./routes/class.routes.js";
 
 const app = express();
 app.use(express.json());
 
 
 app.use("/teachers", teacherRouter);
+app.use("/classes", classRouter);
 app.use(errorMiddleware);
 
 app.listen(env.port, async () => {
